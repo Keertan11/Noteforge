@@ -12,7 +12,7 @@ export const auth = betterAuth({
     emailVerification: {
         sendVerificationEmail: async ({ user, url }) => {
             await resend.emails.send({
-                from: 'NoteForge <noteforge@orcdev.com>',
+                from: 'NoteForge <onboarding@resend.dev>',
                 to: [user.email],
                 subject: 'Verify your email address',
                 react: VerificationEmail({ userName: user.name, verificationUrl: url }),
@@ -31,6 +31,7 @@ export const auth = betterAuth({
             });
         },
     },
+    baseURL: process.env.BETTER_AUTH_URL, 
     socialProviders: {
         google: {
             clientId: process.env.GOOGLE_CLIENT_ID as string,
